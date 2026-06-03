@@ -1,0 +1,31 @@
+int tensao_radicular() 
+{
+    float TR, AR, A, cR;
+
+    printf("=== Calculadora de Tensao Radicular ===\n\n");
+
+    // Entrada de dados
+    printf("Digite TR (Resistencia a tracao das raizes): \n");
+    scanf("%f", &TR);
+
+    printf("Digite AR (Area das raizes): \n");
+    scanf("%f", &AR);
+
+    printf("Digite A (Area total do solo): \n");
+    scanf("%f", &A);
+
+    // Verificacao
+    if (A == 0) 
+    {
+        printf("\nErro: A area total do solo nao pode ser zero.\n");
+        return 1;
+    }
+    // Calculo
+    cR = TR * (AR / A);
+
+    // Resultado
+    printf("\nResultado:\n");
+    printf("DeltaT = cR = %.4f kPa\n", cR);
+
+    return cR;
+}
