@@ -1,0 +1,40 @@
+float vazao() 
+{
+    float area_ha, coef_escoamento, intensidade_mm_h, largura_m, altura_m, vazao_pico, area_canaleta, velocidade;
+    printf("=== SISTEMA DE CÁLCULO DE VAZÃO E DRENAGEM ===\n\n");
+    // 1. Coleta de dados
+    printf("Digite a área do terreno (em hectares): ");
+    scanf("%f", &area_ha);
+
+    printf("Digite o coeficiente de escoamento (ex: 0.60): ");
+    scanf("%f", &coef_escoamento);
+
+    printf("Digite a intensidade da chuva (mm/h): ");
+    scanf("%f", &intensidade_mm_h);
+
+    printf("Digite a largura da canaleta (m): ");
+    scanf("%f", &largura_m);
+
+    printf("Digite a altura da água na canaleta (m): ");
+    scanf("%f", &altura_m);
+
+    // 2. Cálculos
+    // Fórmula: Q = (C * I * A) / 360
+    vazao_pico = (coef_escoamento * intensidade_mm_h * area_ha) / 360.0;
+    // Área da seção (Retangular)
+    area_canaleta = largura_m * altura_m;
+    // Velocidade (V = Q / A)
+    if (area_canaleta > 0) 
+    {
+      velocidade = vazao_pico / area_canaleta;
+    } 
+    else 
+    {
+      velocidade = 0;
+    }
+    printf("\n=== RESULTADOS ===\n");
+    printf("Vazão de pico: %.4f m3/s\n", vazao_pico);
+    printf("Velocidade da água: %.2f m/s\n", velocidade);
+
+    return vazao_pico;
+}
