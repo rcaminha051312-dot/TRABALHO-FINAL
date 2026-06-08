@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <locale.h>
+
+int main() {
+
+    float vetor[5];
+    int codigo;
+    int i;
+
+    setlocale(LC_ALL, "Portuguese");
+
+    printf("Digite 5 numeros reais:\n");
+
+    for (i = 0; i < 5; i++) {
+        scanf("%f", &vetor[i]);
+    }
+
+    printf("\nO que deseja fazer?\n");
+    printf("0 - Finalizar\n");
+    printf("1 - CALCULO DE VAZÃO\n");
+    printf("2 - TENSÃO RADICULAR\n");
+    printf("Codigo: ");
+    scanf("%d", &codigo);
+
+    switch (codigo) {
+
+        case 0:
+            printf("Programa finalizado.\n");
+            break;
+
+        case 1:
+            printf("CALCULO DE VAZÃO: ");
+
+            
+
+            printf("\n");
+            break;
+
+        case 2:
+            printf("TENSÃO RADICULAR: ");
+
+            
+
+            printf("\n");
+            break;
+
+        default:
+            printf("Codigo invalido.\n");
+    }
+
+    return 0;
+}
