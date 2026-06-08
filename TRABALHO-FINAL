@@ -1,0 +1,138 @@
+#include <stdio.h> <locale.h>
+
+double vazao() 
+{
+    float area_ha, coef_escoamento, intensidade_mm_h, largura_m, altura_m, vazao_pico, area_canaleta, velocidade;
+    printf("=== SISTEMA DE CÁLCULO DE VAZÃO E DRENAGEM ===\n\n");
+    // 1. Coleta de dados
+    printf("Digite a área do terreno (em hectares): ");
+    scanf("%f", &area_ha);
+
+    printf("Digite o coeficiente de escoamento (ex: 0.60): ");
+    scanf("%f", &coef_escoamento);
+
+    printf("Digite a intensidade da chuva (mm/h): ");
+    scanf("%f", &intensidade_mm_h);
+
+    printf("Digite a largura da canaleta (m): ");
+    scanf("%f", &largura_m);
+
+    printf("Digite a altura da água na canaleta (m): ");
+    scanf("%f", &altura_m);
+
+    // 2. Cálculos
+    // Fórmula: Q = (C * I * A) / 360
+    vazao_pico = (coef_escoamento * intensidade_mm_h * area_ha) / 360.0;
+    // Área da seção (Retangular)
+    area_canaleta = largura_m * altura_m;
+    // Velocidade (V = Q / A)
+    if (area_canaleta > 0) 
+    {
+      velocidade = vazao_pico / area_canaleta;
+    } 
+    else 
+    {
+      velocidade = 0;
+    }
+    printf("\n=== RESULTADOS ===\n");
+    printf("Vazão de pico: %.4f m3/s\n", vazao_pico);
+    printf("Velocidade da água: %.2f m/s\n", velocidade);
+
+    return vazao_pico;
+}
+
+double calculo_do_escoamento_superficial()
+{
+    printf("=== Calculadora de Escoamento Superficial ===\n\n");
+  float q, c, i, a;
+  printf("defina o coeficiente entre 0 e 1\n",c);
+  scanf("%f",&c);
+  printf("defina a intensidade\n",i);
+  scanf("%f",&i);
+  printf("defina a área do barranco\n",a);
+  scanf("%f",&a);
+  q = (c*i*a)/360;
+  printf("a vazão é %f:\n",q);
+  scanf("%f",&q);
+
+  return(q); 
+}
+
+double tensao_radicular() 
+{
+    float TR, AR, A, cR;
+
+    printf("=== Calculadora de Tensão Radicular ===\n\n");
+
+    // Entrada de dados
+    printf("Digite TR (Resistencia a tração das raízes): \n");
+    scanf("%f", &TR);
+
+    printf("Digite AR (Area das raízes): \n");
+    scanf("%f", &AR);
+
+    printf("Digite A (Area total do solo): \n");
+    scanf("%f", &A);
+
+    // Verificacao
+    if (A == 0) 
+    {
+        printf("\nErro: A área total do solo não pode ser zero.\n");
+        return 1;
+    }
+    // Calculo
+    cR = TR * (AR / A);
+
+    // Resultado
+    printf("\nResultado:\n");
+    printf("DeltaT = cR = %.4f kPa\n", cR);
+
+    return cR;
+}
+
+int main() 
+{
+
+    int codigo, i;
+
+    setlocale(LC_ALL, "Portuguese");
+
+    printf("O que deseja fazer?\n");
+    printf("0 - Finalizar\n");
+    printf("1 – CÁLCULO DE VAZÃO\n");
+    printf("2 - TENSÃO RADICULAR\n");
+    printf("3 – ESCOAMENTO SUPERFICIAL\n");
+    printf("Código: ");
+    scanf("%d", &codigo);
+
+    switch (codigo) {
+
+        case 0:
+            printf("Programa finalizado.\n");
+            break;
+
+        case 1:
+            printf("CALCULO DE VAZÃO: ");
+            vazao();
+            printf("\n");
+            break;
+
+        case 2:
+            printf("TENSÃO RADICULAR: ");
+            tensao_radicular(); 
+            printf("\n");
+            break;
+
+        case 3:
+            printf("CÁLCULO DE ESCOAMENTO SUPERFICIAL: ");
+            calculo_do_escoamento_superficial();
+            printf("\n");
+            break;
+
+        default:
+            printf("Código invalido.\n");
+    }
+
+    return 0;
+}
+
