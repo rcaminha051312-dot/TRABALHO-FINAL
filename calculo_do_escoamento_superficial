@@ -1,0 +1,15 @@
+double calculo_do_escoamento_superficial()
+{
+  float q, c, i, a;
+  printf("defina o coeficiente entre 0 e 1\n",c);
+  scanf("%f",&c);
+  printf("defina a intensidade\n",i);
+  scanf("%f",&i);
+  printf("defina a area do barranco\n",a);
+  scanf("%f",&a);
+  q = (c*i*a)/360;
+  printf("a vazao e %f:\n",q);
+  scanf("%f",&q);
+
+  return(q); 
+}
