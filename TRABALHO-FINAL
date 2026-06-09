@@ -89,6 +89,39 @@ double tensao_radicular()
 
     return cR;
 }
+double balanco_de_massa()
+{
+    float entrada, saida, geracao, consumo, acumulo;
+    printf("Digite qual a entrada de material: \n");
+    scanf("%f", &entrada);
+    printf("Digite qual a saida de material: \n");
+    scanf("%f", &saida);
+    printf("Digite qual a geração de material: \n");
+    scanf("%f", &geracao);
+    printf("Digite qual o consumo de material: \n");
+    scanf("%f", &consumo);
+    acumulo = entrada - saida + geracao - consumo;
+
+    printf("O acumulo de material é: %.4f", acumulo);
+    return(acumulo);
+}
+double numero_de_reynolds()
+{
+    float p, v, d, u, Re;
+    printf("Digite qual a massa especifica do fluido: \n");
+    scanf("%f", &p);
+    printf("Digite qual a velocidade de escoamento: \n");
+    scanf("%f", &v);
+    printf("Digite qual o diametro da tubulação: \n");
+    scanf("%f", &d);
+    printf("Digite qual a viscosidade do fluido: \n");
+    scanf("%f", &u);
+
+    Re = (p * v * d) / u;
+
+    printf("O numero de Reynolds é: %.4f", Re);
+    return(Re);
+}
 
 int main() 
 {
@@ -105,6 +138,8 @@ int main()
 	    printf("1 – CÁLCULO DE VAZÃO\n");
 	    printf("2 - TENSÃO RADICULAR\n");
 	    printf("3 – ESCOAMENTO SUPERFICIAL\n");
+        printf("4 - BALANÇO DE MASSA\n");
+	    printf("5 – NÚMERO DE REYNOLDS\n");
 	    printf("Código: ");
 	    scanf("%d", &codigo);
 
@@ -130,6 +165,16 @@ int main()
 	            calculo_do_escoamento_superficial();
 	            printf("\n");
 	            break;	
+	
+	        case 4:
+	            balanco_de_massa();
+	            printf("\n");
+	            break;	
+            
+	        case 5:
+	            numero_de_reynolds();
+	            printf("\n");
+	            break;
 	
 	        default:
 	            printf("Código invalido.\n");        
