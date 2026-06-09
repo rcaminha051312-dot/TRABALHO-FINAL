@@ -1,4 +1,6 @@
-#include <stdio.h> <locale.h>
+#include <stdio.h> 
+#include<stdlib.h>
+#include <locale.h>
 
 double vazao() 
 {
@@ -53,8 +55,6 @@ double calculo_do_escoamento_superficial()
   scanf("%f",&a);
   q = (c*i*a)/360;
   printf("a vazão é %f:\n",q);
-  scanf("%f",&q);
-
   return(q); 
 }
 
@@ -93,46 +93,55 @@ double tensao_radicular()
 int main() 
 {
 
-    int codigo, i;
+    int codigo, continuar;
 
-    setlocale(LC_ALL, "Portuguese");
+	setlocale(LC_ALL, "Portuguese");
 
-    printf("O que deseja fazer?\n");
-    printf("0 - Finalizar\n");
-    printf("1 – CÁLCULO DE VAZÃO\n");
-    printf("2 - TENSÃO RADICULAR\n");
-    printf("3 – ESCOAMENTO SUPERFICIAL\n");
-    printf("Código: ");
-    scanf("%d", &codigo);
+	do
+	{
+		system("cls");
+	    printf("O que deseja fazer?\n");
+	    printf("0 - Finalizar\n");
+	    printf("1 – CÁLCULO DE VAZÃO\n");
+	    printf("2 - TENSÃO RADICULAR\n");
+	    printf("3 – ESCOAMENTO SUPERFICIAL\n");
+	    printf("Código: ");
+	    scanf("%d", &codigo);
 
-    switch (codigo) {
-
-        case 0:
-            printf("Programa finalizado.\n");
-            break;
-
-        case 1:
-            printf("CALCULO DE VAZÃO: ");
-            vazao();
-            printf("\n");
-            break;
-
-        case 2:
-            printf("TENSÃO RADICULAR: ");
-            tensao_radicular(); 
-            printf("\n");
-            break;
-
-        case 3:
-            printf("CÁLCULO DE ESCOAMENTO SUPERFICIAL: ");
-            calculo_do_escoamento_superficial();
-            printf("\n");
-            break;
-
-        default:
-            printf("Código invalido.\n");
-    }
-
-    return 0;
+	    switch (codigo) 
+		{
+	
+	        case 0:
+	            printf("Programa finalizado.\n");
+	            exit(0);
+	            break;
+	
+	        case 1:
+	            vazao();
+	            printf("\n");
+				break;
+	
+	        case 2:
+	            tensao_radicular(); 
+	            printf("\n");
+				break;
+	
+	        case 3:
+	            calculo_do_escoamento_superficial();
+	            printf("\n");
+	            break;	
+	
+	        default:
+	            printf("Código invalido.\n");        
+	    }
+		printf("Deseja fazer uma nova operação?\n");
+		printf("1 - Sim\n");
+		printf("2 - Não\n");
+		scanf("%d", &continuar);
+		if (continuar!=1)
+		{
+			break;
+		}
+	} while (continuar==1);
+return 0;
 }
-
